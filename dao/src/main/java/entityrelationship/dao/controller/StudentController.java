@@ -3,6 +3,7 @@ package entityrelationship.dao.controller;
 import entityrelationship.dao.Dto.Studentdto;
 import entityrelationship.dao.entity.Passport;
 import entityrelationship.dao.entity.Student;
+import entityrelationship.dao.service.StudentService;
 import entityrelationship.dao.service.StudentServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

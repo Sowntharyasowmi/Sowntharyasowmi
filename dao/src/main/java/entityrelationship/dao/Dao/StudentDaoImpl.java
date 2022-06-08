@@ -3,12 +3,13 @@ package entityrelationship.dao.Dao;
 import entityrelationship.dao.entity.Passport;
 import entityrelationship.dao.entity.Student;
 import org.springframework.stereotype.Repository;
+import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-import javax.websocket.Session;
+
 import java.util.List;
 
 @Repository
@@ -49,14 +50,14 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void deletebyid(int id) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        Query query= currentSession.createQuery("delete from Student where id=:id");
+        query.setParameter("id", id);
+        query.executeUpdate();
+
 
     }
-
-//    @Override
-//    public void deletebyid(int id) {
-//        Session currentSession = entityManager.unwrap(Session.class);
-//        Query query = currentSession.createQuery("delete from Student where id=:id");
-//        query.setParameter("id", id);
-//        query.executeUpdate();
-
     }
+
+
+

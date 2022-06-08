@@ -1,11 +1,11 @@
 package entityrelationship.dao.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.LifecycleState;
+import org.hibernate.engine.profile.Fetch;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,18 +15,18 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="campus_students")
+@Table(name = "courses")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-
-public class Student {
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String name;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JsonManagedReference
-    private Passport passport;
+    public int id;
+    private String course_name;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JsonBackReference
-    List<Course>courses=new ArrayList<>();
+    List<Student> students = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Review> reviews;
 }
+
+
+

@@ -9,8 +9,6 @@ public interface StudentDao {
     public Student save(Student student, Passport passport);
     public Student findById(int id);
     public List<Student> findAll();
-
     Student updateStudentById(Student student);
-
-    void deletebyid(int id);
+    public  void deletebyid(int id);
 }
